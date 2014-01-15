@@ -28,18 +28,21 @@ if(Input::exists())
     
     if($validation->passed())
     {
-        //rekisteröi käyttäjä
+        echo 'Validointi onnistui.';
     }
     else
     {
-        //tulosta virheet
+        foreach($validation->errors() as $error)
+        {
+            echo $error . '<br>';
+        }
     }
 }
 ?>
 <form action="" method="post">
     <div class="field">
         <label for="username">Tunnus</label>
-        <input type="text" name="username" id="username" value="" autocomplete="off">
+        <input type="text" name="username" id="username" value="<?php echo escape(Input::get('username'));?>" autocomplete="off">
     </div>
     <div class="field">
         <label for="password">Salasana</label>
@@ -51,7 +54,7 @@ if(Input::exists())
     </div>
     <div class="field">
         <label for="name">Nimi</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" value="<?php echo escape(Input::get('  name'));?>">
     </div>
     <input type="submit" value="Rekisteröidy">
 </form>
